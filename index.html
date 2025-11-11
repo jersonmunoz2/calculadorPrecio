@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Precios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-slate-100 to-slate-200 min-h-screen py-8 px-4">
+    <div class="max-w-3xl mx-auto">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl shadow-xl p-8 mb-8">
+            <h1 class="text-4xl font-bold text-white text-center mb-2">
+                CALCULADORA DE PRECIOS
+            </h1>
+        </div>
+
+        <!-- Calculator Panel -->
+        <div class="bg-white rounded-xl shadow-xl p-8 border border-slate-200">
+            <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b-2 border-slate-200 pb-3">
+                Agregar Producto
+            </h2>
+            
+            <!-- Category Selection -->
+            <div class="mb-6">
+                <label class="block text-slate-700 font-semibold mb-4 text-lg">Categoria del Producto</label>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button onclick="selectCategory('papeleria', 30)" 
+                            class="category-btn py-5 px-6 rounded-lg border-2 border-slate-300 bg-white hover:border-blue-600 hover:bg-blue-50 transition-all duration-200 shadow-md hover:shadow-lg"
+                            data-category="papeleria">
+                        <span class="font-bold text-lg text-slate-800 block mb-1">Papeleria</span>
+                        <span class="text-sm text-slate-600 font-medium">Margen: +30%</span>
+                    </button>
+                    <button onclick="selectCategory('jugueteria', 50)" 
+                            class="category-btn py-5 px-6 rounded-lg border-2 border-slate-300 bg-white hover:border-purple-600 hover:bg-purple-50 transition-all duration-200 shadow-md hover:shadow-lg"
+                            data-category="jugueteria">
+                        <span class="font-bold text-lg text-slate-800 block mb-1">Jugueteria</span>
+                        <span class="text-sm text-slate-600 font-medium">Margen: +50%</span>
+                    </button>
+                    <button onclick="selectCategory('camisas', 45)" 
+                            class="category-btn py-5 px-6 rounded-lg border-2 border-slate-300 bg-white hover:border-emerald-600 hover:bg-emerald-50 transition-all duration-200 shadow-md hover:shadow-lg"
+                            data-category="camisas">
+                        <span class="font-bold text-lg text-slate-800 block mb-1">Camisas</span>
+                        <span class="text-sm text-slate-600 font-medium">Margen: +45%</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Price Input -->
+            <div class="mb-6">
+                <label class="block text-slate-700 font-semibold mb-3 text-lg">Precio de Compra</label>
+                <div class="relative">
+                    <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-600 text-xl font-semibold">$</span>
+                    <input type="text" 
+                           id="precioCompra" 
+                           placeholder="0" 
+                           class="w-full pl-12 pr-4 py-3 text-xl border-2 border-slate-300 rounded-lg focus:border-slate-600 focus:outline-none transition-colors shadow-sm font-semibold"
+                           oninput="formatearInput(this)">
+                </div>
+            </div>
+
+            <!-- Current Calculation -->
+            <div id="calculoActual" class="hidden mt-6">
+                <div class="bg-slate-50 rounded-lg p-6 border-2 border-slate-300 shadow-md">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-300 pb-2">Calculo Actual</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
+                            <span class="text-slate-700 font-semibold">Categoria:</span>
+                            <span id="categoriaActual" class="font-bold text-slate-800 text-lg"></span>
+                        </div>
+                        <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
+                            <span class="text-slate-700 font-semibold">Margen:</span>
+                            <span id="margenActual" class="font-bold text-emerald-600 text-lg"></span>
+                        </div>
+                        <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
+                            <span class="text-slate-700 font-semibold">Ganancia:</span>
+                            <span id="gananciaActual" class="font-bold text-emerald-600 text-lg"></span>
+                        </div>
+                        <div class="flex justify-between items-center bg-slate-700 p-4 rounded-lg">
+                            <span class="text-white font-bold text-lg">Precio de Venta:</span>
+                            <span id="precioVentaActual" class="font-bold text-white text-2xl"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="mensajeInfo" class="mt-4 text-center text-slate-600 font-medium bg-slate-100 p-4 rounded-lg border border-slate-300">
+                Selecciona una categoria e ingresa el precio de compra
+            </div>
+        </div>
+    </div>
+    <script src="calculador.js"></script>
+</body>
+</html>
